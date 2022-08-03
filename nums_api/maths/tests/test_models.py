@@ -36,7 +36,7 @@ class MathModelTestCase(TestCase):
         self.assertEqual(test_setup_correct, True)
 
     def test_model(self):
-        """Test ablility to create new instance of Math model 
+        """Test ability to create new instance of Math model 
         and add instance to database successfully"""
         self.assertIsInstance(self.m1, Math)
         self.assertEqual(Math.query.count(), 0)
