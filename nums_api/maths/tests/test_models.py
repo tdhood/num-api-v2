@@ -12,18 +12,18 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.drop_all()
 db.create_all()
 
+
 class MathModelTestCase(TestCase):
     def setUp(self):
         """Set up test data here"""
 
         Math.query.delete()
 
-        self.t1 = Math(
+        self.m1 = Math(
             number=1,
             fact_fragment="the number for this test fact fragment",
             fact_statement="1 is the number for this test fact statement.",
-            pos='DET',
-            includes_self=False
+            was_submitted=False
         )
 
     def tearDown(self):
@@ -36,11 +36,12 @@ class MathModelTestCase(TestCase):
         self.assertEqual(test_setup_correct, True)
 
     def test_model(self):
-        """Test Math model added to database successfully"""
-        self.assertIsInstance(self.t1, Math)
+        """Test ablility to create new instance of Math model 
+        and add instance to database successfully"""
+        self.assertIsInstance(self.m1, Math)
         self.assertEqual(Math.query.count(), 0)
 
-        db.session.add(self.t1)
+        db.session.add(self.m1)
         db.session.commit()
 
         self.assertEqual(Math.query.count(), 1)

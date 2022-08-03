@@ -1,7 +1,9 @@
 from nums_api.database import db
 
+
 class Math(db.Model):
     """General math facts about numbers"""
+
     __tablename__ = "math"
 
     id = db.Column(
@@ -19,7 +21,7 @@ class Math(db.Model):
     fact_fragment = db.Column(
         db.String(200),
         nullable=False
-        )
+    )
 
     # fact with prefix, first word is number, has punctuation at the end
     fact_statement = db.Column(
@@ -27,12 +29,7 @@ class Math(db.Model):
         nullable=False
     )
 
-    pos = db.Column(
-        db.String(20),
-        nullable=False
-    )
-
-    includes_self = db.Column(
+    was_submitted = db.Column(
         db.Boolean,
         nullable=False
     )
