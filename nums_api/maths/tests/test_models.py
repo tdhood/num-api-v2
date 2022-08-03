@@ -2,7 +2,7 @@ from unittest import TestCase
 from nums_api import app
 from nums_api.database import db
 from nums_api.config import DATABASE_URL_TEST
-from nums_api.maths.models import Maths
+from nums_api.maths.models import Math
 
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL_TEST
 app.config["TESTING"] = True
@@ -16,9 +16,9 @@ class MathModelTestCase(TestCase):
     def setUp(self):
         """Set up test data here"""
 
-        Maths.query.delete()
+        Math.query.delete()
 
-        self.t1 = Maths(
+        self.t1 = Math(
             number=1,
             fact_fragment="the number for this test fact fragment",
             fact_statement="1 is the number for this test fact statement.",
@@ -37,11 +37,11 @@ class MathModelTestCase(TestCase):
 
     def test_model(self):
         """Test Math model added to database successfully"""
-        self.assertIsInstance(self.t1, Maths)
-        self.assertEqual(Maths.query.count(), 0)
+        self.assertIsInstance(self.t1, Math)
+        self.assertEqual(Math.query.count(), 0)
 
         db.session.add(self.t1)
         db.session.commit()
 
-        self.assertEqual(Maths.query.count(), 1)
-        self.assertEqual(Maths.query.filter_by(number=1).one().number, 1)
+        self.assertEqual(Math.query.count(), 1)
+        self.assertEqual(Math.query.filter_by(number=1).one().number, 1)

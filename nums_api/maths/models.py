@@ -1,6 +1,6 @@
 from nums_api.database import db
 
-class Maths(db.Model):
+class Math(db.Model):
     """General math facts about numbers"""
     __tablename__ = "math"
 
