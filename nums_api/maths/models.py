@@ -1,6 +1,6 @@
 from nums_api.database import db
 
-class Math(db.Model):
+class Maths(db.Model):
     """General math facts about numbers"""
     __tablename__ = "math"
 
@@ -28,11 +28,11 @@ class Math(db.Model):
     )
 
     pos = db.Column(
-        db.String(20), 
+        db.String(20),
         nullable=False
     )
 
-    self = db.Column(
+    includes_self = db.Column(
         db.Boolean,
         nullable=False
     )
