@@ -1,21 +1,60 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
+from random import choice
+
+from nums_api.years.models import Year
 
 years = Blueprint("years", __name__)
 
 
-@years.get("/<year>")
+@years.get("/<int:year>")
 def get_num_fact(year):
-    """FIXME
-    Stub route for getting fact about year
+    """Returns a random year fact in JSON about a year passed as a URL
+    parameter.
+
+    If fact is found -->
+        {fact: {number, fragment, statement, type}}
+    If no fact is found -->
+        {error: {status, message}} and a status code 404 is sent
     """
 
-    return f"Some interesting fact about the year {year}."
+    year_instances = Year.query.filter(Year.number == year).all()
+
+    if not year_instances:
+        error = {
+            "status": 404,
+            "message": f"A year fact for { year } not found",
+        }
+
+        return (jsonify(error=error), 404)
+
+    # picks a random instance from the list
+    year = choice(year_instances)
+    fact = {
+        'number': year.number,
+        'fragment': year.fact_fragment,
+        'statement': year.fact_statement,
+        'type': 'year'
+    }
+
+    return jsonify(fact=fact)
 
 
 @years.get("/random")
 def get_num_fact_random():
-    """FIXME
-    Stub route for getting fact about random year
+    """ Returns a random year fact in JSON
+
+    Ex: {fact: {number, fragment, statement, type}}
     """
 
-    return "Some interesting fact about a random year."
+    year_instances = Year.query.all()
+
+    # picks a random instance from the list
+    random_year = choice(year_instances)
+    fact = {
+        'number': random_year.number,
+        'fragment': random_year.fact_fragment,
+        'statement': random_year.fact_statement,
+        'type': 'year'
+    }
+
+    return jsonify(fact=fact)
