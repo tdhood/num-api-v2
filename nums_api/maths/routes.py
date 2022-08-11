@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify
 from random import choice
+from nums_api.limiter import shared_limit
 
 from nums_api.maths.models import Math
 
@@ -8,6 +9,7 @@ math = Blueprint("math", __name__)
 
 
 @math.get("/<int:number>")
+@shared_limit
 def get_num_fact(number):
     """ Returns a random math fact in JSON about a number passed as a URL
     parameter.
@@ -46,6 +48,7 @@ def get_num_fact(number):
 
 
 @math.get("/random")
+@shared_limit
 def get_num_fact_random():
     """ Returns a random math fact in JSON
 

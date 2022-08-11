@@ -1,13 +1,14 @@
 from flask import Blueprint, jsonify
 from random import choice
+from nums_api.limiter import shared_limit
 
 from nums_api.trivia.models import Trivia
 
 
 trivia = Blueprint("trivia", __name__)
 
-
 @trivia.get("/<int:number>")
+@shared_limit
 def get_num_fact(number):
     """ Returns a random trivia fact in JSON about a number passed as a URL
     parameter.
@@ -46,6 +47,7 @@ def get_num_fact(number):
 
 
 @trivia.get("/random")
+@shared_limit
 def get_num_fact_random():
     """ Returns a random trivia fact in JSON
 

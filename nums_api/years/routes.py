@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify
 from random import choice
+from nums_api.limiter import shared_limit
 
 from nums_api.years.models import Year
 
@@ -7,6 +8,7 @@ years = Blueprint("years", __name__)
 
 
 @years.get("/<int:year>")
+@shared_limit
 def get_num_fact(year):
     """Returns a random year fact in JSON about a year passed as a URL
     parameter.
@@ -40,6 +42,7 @@ def get_num_fact(year):
 
 
 @years.get("/random")
+@shared_limit
 def get_num_fact_random():
     """ Returns a random year fact in JSON
 

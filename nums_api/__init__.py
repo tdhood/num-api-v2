@@ -9,11 +9,17 @@ from nums_api.dates.routes import dates
 from nums_api.years.routes import years
 from nums_api.root.routes import root
 
+from nums_api.limiter import limiter
+
 # create app and add configuration
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
+
+# links and initializes the limiter for the app
+limiter.app = app
+limiter.init_app(app)
 
 # register blueprints
 app.register_blueprint(root)

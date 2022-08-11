@@ -1,4 +1,8 @@
 from unittest import TestCase
+
+# Importing limiter so we can disable it in the setUp
+from nums_api.limiter import limiter
+
 from nums_api import app
 from nums_api.database import db
 from nums_api.config import DATABASE_URL_TEST
@@ -36,6 +40,8 @@ class YearRouteTestCase(TestCase):
 
         db.session.add_all([self.y1, self.y2])
         db.session.commit()
+
+        limiter.enabled = False
 
     def tearDown(self):
         """Clean up any fouled transaction."""

@@ -1,4 +1,8 @@
 from unittest import TestCase
+
+# Importing limiter so we can disable it in the setUp
+from nums_api.limiter import limiter
+
 from nums_api import app
 from nums_api.database import db
 from nums_api.config import DATABASE_URL_TEST
@@ -15,6 +19,8 @@ class DateRouteTestCase(TestCase):
     def setUp(self):
         """Set up test data here"""
         self.client = app.test_client()
+
+        limiter.enabled = False
 
     def tearDown(self):
         """Clean up any fouled transaction."""
