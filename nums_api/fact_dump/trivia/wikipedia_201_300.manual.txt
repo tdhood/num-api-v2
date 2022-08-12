@@ -1,0 +1,288 @@
+{
+    "201": [
+        {
+            "text": "the HTTP status code indicating a new resource was successfully created in response to the request",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the title of an episode of South Park",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the Saros cycle; the next solar eclipse in this cycle is predicted to take place in AD 3223",
+            "self": false, "manual": true
+        }
+    ],
+    "202": [
+        {
+            "text": "the area code assigned to Washington D.C",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the HTTP status code indicating the request was accepted but has not yet been fulfilled",
+            "self": false, "manual": true
+        }
+    ],
+    "203": [
+        {
+            "text": "the HTTP status code indicating partial information",
+            "self": false, "manual": true
+        }
+    ],
+    "204": [
+        {
+            "text": "the HTTP status code indicating the request was received but there is no response to the request",
+            "self": false, "manual": true
+        }
+    ],
+    "206": [
+        {
+            "text": "the number of bones in the typical adult human body",
+            "self": false, "manual": true
+        }
+    ],
+    "207": [
+        {
+            "text": "the area code for the US state of Maine",
+            "self": false, "manual": true
+        }
+    ],
+    "208": [
+        {
+            "text": "the heaviest stable isotope of any element (lead)",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the wavelength in meters of Radio Luxembourg's English language service from 1951 to 1991",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the area code for the US state of Idaho",
+            "self": false, "manual": true
+        }
+    ],
+    "212": [
+        {
+            "text": "the area code for Manhattan, one of the original area codes, and considered the most coveted in America",
+            "self": false, "manual": true
+        }
+    ],
+    "213": [
+        {
+            "text": "one of the first three area codes created in California",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the name of a hip hop, active 1990-2004",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the code for character \"Õ\" in codepages such as ISO-8859-1 and UTF-8",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the radical meaning \"turtle\", one of only two of the 214 Kangxi radicals that are composed of 16 strokes",
+            "self": false, "manual": true
+        }
+    ],
+    "214": [
+        {
+            "text": "the first area code of metropolitan Dallas, Texas",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the number of Chinese radicals for the writing of Chinese characters according to the 1716 Kangxi Dictionary",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the SMTP status code for help message",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the Dewey Decimal Classification for Theodicy (the problem of evil)",
+            "self": false, "manual": true
+        }
+    ],
+    "215": [
+        {
+            "text": "the Dewey Decimal Classification for Science and religion",
+            "self": false, "manual": true
+        }
+    ],
+    "216": [
+        {
+            "text": "the number of colors formed by a 6 color cube, sometimes known as the web-safe color palette",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the ISO's standard for paper sizes",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the number of digits in a number that Max becomes obsessed with in the film Pi in his quest to find the numeric equation behind existence",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the number of stitches on a baseball",
+            "self": false, "manual": true
+        }
+    ],
+    "217": [
+        {
+            "text": "the area code for central Illinois",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the room in Stephen King's novel \"The Shining\", that plays a central part in the story as it is haunted",
+            "self": false, "manual": true
+        }
+    ],
+    "220": [
+        {
+            "text": "the common voltage in many countries",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the SMTP code meaning \"service ready\"",
+            "self": false, "manual": true
+        }
+    ],
+    "221": [
+        {
+            "text": "SMTP status code for service closing transmission channel",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the house number on Baker Street of the fictional London residence of Sherlock Holmes",
+            "self": false, "manual": true
+        }
+    ],
+    "222": [
+        {
+            "text": "the number for Historical Books of the Old Testament in the Dewey Decimal System ",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the score in the 1916 Cumberland vs. Georgia Tech football game that was the record for most points scored by one team in an American football game",
+            "self": false, "manual": true
+        }
+    ],
+    "227": [
+        {
+            "text": "the highest score ever in the Eurovision Song Contest, achieved by Katrina and the Waves of the UK in 1997, before the Semi-final system was introduced in 2004",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the number of days Pi Patel was at sea in the popular novel, Life of Pi",
+            "self": false, "manual": true
+        }
+    ],
+    "230": [
+        {
+            "text": "the common voltage in the European Union",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the country code for Mauritius",
+            "self": false, "manual": true
+        }
+    ],
+    "235": [
+        {
+            "text": "the atomic mass number of an important isotope of the element uranium, the fissile isotope which is used as the fuel for nuclear reactors and in some nuclear weapons",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the number of three interstate highways in the United States, located in the states of Iowa, Kansas, and Oklahoma",
+            "self": false, "manual": true
+        }
+    ],
+    "239": [
+        {
+            "text": "the atomic mass number of the most common isotope of plutonium",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the number of chapters in the Book of Mormon",
+            "self": false, "manual": true
+        }
+    ],
+    "240": [
+        {
+            "text": "the common voltage in England and Australia before conversion to 230V standard",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the number of pence in a pound in the British currency until 1971",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the cholesterol level above which is considered high risk",
+            "self": false, "manual": true
+        }
+    ],
+    "242": [
+        {
+            "text": "the number of a notable UN Security Council resolution pertaining to the Arab/Israeli conflict",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the area code of The Bahamas located in the North West Atlantic Ocean",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the rumored time for the release of Radiohead's pre-sale for their 2012 tour",
+            "self": false, "manual": true
+        }
+    ],
+    "243": [
+        {
+            "text": "the Calling code for Zaire",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the number of isotopes or variations of elements calculated by Dr. Plichta",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the number of Earth Days for the planet Venus to complete one Venetian day, one revolution",
+            "self": false, "manual": true
+        }
+    ],
+    "251": [
+        {
+            "text": "the number of Pokémon available in Pokémon Gold and Silver is 251",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the last and most powerful prime mover (engine) designed and built by the American Locomotive Company (ALCO)",
+            "self": false, "manual": true
+        }
+    ],
+    "255": [
+        {
+            "text": "the largest values that can be assigned to elements in the 24-bit RGB color model, since each color channel is allotted eight bits",
+            "self": false, "manual": true
+        }
+    ],
+    "270": [
+        {
+            "text": "the average number of days in human pregnancy",
+            "self": false, "manual": true
+        }
+    ],
+    "273": [
+        {
+            "text": "the zero of the Celsius temperature scale (to the nearest whole number) in Kelvin",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the number of seconds in American composer John Cage's piano composition 4'33\" of silence, in three movements",
+            "self": false, "manual": true
+        },
+        {
+            "text": "the death toll of the air crash of American Airlines Flight 191",
+            "self": false, "manual": true
+        }
+    ]
+}
