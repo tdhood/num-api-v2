@@ -33,8 +33,4 @@ class Trivia(db.Model):
         db.Boolean,
         nullable=False
     )
-
-    category = db.Column(
-        db.String(50),
-        nullable=False
-    )
+        
