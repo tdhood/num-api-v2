@@ -1,4 +1,5 @@
 from nums_api.database import db
+from datetime import datetime
 
 class Year(db.Model):
     """General facts about years."""
@@ -31,4 +32,26 @@ class Year(db.Model):
     was_submitted = db.Column(
         db.Boolean,
         nullable=False
+    )
+
+class Year_Like(db.Model):
+
+    __tablename__='year_likes'
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True,
+        autoincrement=True
+    )
+    
+    year_fact_id = db.Column(
+        db.Integer,
+        db.ForeignKey('years.id'),
+        default=False,
+    )
+
+    timestamp = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow,
     )
