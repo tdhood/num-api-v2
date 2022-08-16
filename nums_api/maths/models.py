@@ -1,5 +1,5 @@
 from nums_api.database import db
-
+from datetime import datetime
 
 class Math(db.Model):
     """General math facts about numbers"""
@@ -32,4 +32,26 @@ class Math(db.Model):
     was_submitted = db.Column(
         db.Boolean,
         nullable=False
+    )
+
+class Math_Like(db.Model):
+
+    __tablename__='math_likes'
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True,
+        autoincrement=True
+    )
+    
+    year_fact_id = db.Column(
+        db.Integer,
+        db.ForeignKey('math.id'),
+        default=False,
+    )
+
+    timestamp = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow,
     )
