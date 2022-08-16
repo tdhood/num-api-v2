@@ -5,8 +5,91 @@ from nums_api.maths.models import Math
 from nums_api.years.models import Year
 from nums_api.dates.models import Date
 from nums_api.models_helpers import Like
-
+from nums_api.models_helpers import Liked_Fact
 
 
 db.drop_all(app=app)
 db.create_all(app=app)
+
+trivia_fact = Trivia(
+    number=2,
+    fact_fragment='hello',
+    fact_statement='hello_world',
+    was_submitted=True
+)
+
+db.session.add(trivia_fact)
+db.session.commit()
+
+trivia_fact = Trivia(
+    number=3,
+    fact_fragment='mello',
+    fact_statement='mello_world',
+    was_submitted=True
+)
+
+db.session.add(trivia_fact)
+db.session.commit()
+
+year_fact = Year(
+    number=3,
+    fact_fragment='new',
+    fact_statement='new_year',
+    was_submitted=True
+)
+
+db.session.add(year_fact)
+db.session.commit()
+
+year_fact = Year(
+    number=1,
+    fact_fragment='dew',
+    fact_statement='dew_year',
+    was_submitted=True
+)
+
+db.session.add(year_fact)
+db.session.commit()
+
+math_fact = Math(
+    number=1,
+    fact_fragment='math',
+    fact_statement='math_fact',
+    was_submitted=True
+)
+
+db.session.add(math_fact)
+db.session.commit()
+
+math_fact = Math(
+    number=3,
+    fact_fragment='math',
+    fact_statement='More math_fact',
+    was_submitted=True
+)
+
+db.session.add(math_fact)
+db.session.commit()
+
+date_fact = Date(
+    day_of_year=3,
+    year=1990,
+    fact_fragment='today',
+    fact_statement='today nothing happened',
+    was_submitted=True
+)
+
+db.session.add(date_fact)
+db.session.commit()
+
+date_fact = Date(
+    day_of_year=4,
+    year=1991,
+    fact_fragment='today',
+    fact_statement='today nothing happened again',
+    was_submitted=True
+)
+db.session.add(date_fact)
+db.session.commit()
+
+
