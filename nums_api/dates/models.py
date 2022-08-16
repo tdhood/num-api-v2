@@ -2,6 +2,7 @@ from nums_api.database import db
 import datetime
 
 
+
 class Date (db.Model):
     """General date facts about numbers"""
 
@@ -39,6 +40,28 @@ class Date (db.Model):
     was_submitted = db.Column(
         db.Boolean,
         nullable=False
+    )
+
+class Date_Like(db.Model):
+
+    __tablename__='date_likes'
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True,
+        autoincrement=True
+    )
+
+    date_fact_id = db.Column(
+        db.Integer,
+        db.ForeignKey('dates.id'),
+        default=False,
+    )
+
+    timestamp = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.datetime.utcnow,
     )
 
     @classmethod
