@@ -121,5 +121,14 @@ fact_B_1 = Trivia_Like(trivia_fact_id=1, timestamp=datetime(2012, 12, 12))
 
 fact_B_2 = Trivia_Like(trivia_fact_id=3, timestamp=datetime(2012, 1, 12))
 
-db.session.add_all([fact_A_1, fact_A_2, fact_B_1, fact_B_2])
+fact_date_1 = Date_Like(date_fact_id=1, timestamp=datetime(2012, 1, 12))
+fact_date_2 = Date_Like(date_fact_id=2, timestamp=datetime(2013, 1, 12))
+fact_year_1 = Year_Like(year_fact_id=1, timestamp=datetime(2016, 1, 12))
+fact_year_2 = Year_Like(year_fact_id=2, timestamp=datetime(2022, 8, 12))
+fact_math_1 = Math_Like(math_fact_id=1, timestamp=datetime(2012, 1, 12))
+fact_math_2 = Math_Like(math_fact_id=2, timestamp=datetime(2020, 1, 12))
+
+
+db.session.add_all([fact_A_1, fact_A_2, fact_B_1, fact_B_2,fact_date_1,fact_date_2,fact_math_1,
+fact_math_2,fact_year_1,fact_year_2])
 db.session.commit()
