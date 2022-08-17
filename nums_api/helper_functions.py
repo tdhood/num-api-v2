@@ -131,7 +131,8 @@ def delta_time(ids_points_starttimes_category):
 
     for item in ids_points_starttimes_category:
         delta = CURRENT_TIME - item[2]
-        ids_points_deltatime_category.append([item[0], item[1], delta.days, item[3]])
+        ids_points_deltatime_category.append(
+            [item[0], item[1], delta.days, item[3]])
     print("delta times : ", ids_points_deltatime_category)
     return ids_points_deltatime_category
 
@@ -140,9 +141,9 @@ ids_points_deltatime_category = delta_time(ids_points_starttimes_category)
 
 
 def generate_score(ids_points_deltatime_category):
-    """Takes an array like [[fact_id, points, delta_time, category], ...] 
+    """Takes an array like [[fact_id, points, delta_time, category], ...]
         Calculates the Score using Popularity algorithm
-    
+
         Returns array like [[fact_id, score, category], ...]
     """
 
@@ -160,10 +161,13 @@ def sort_scores(id_score_category):
     """Takes an array like [[fact_id, score, category], ...]
 
         Sorts array based on score
-    
+
     """
-    sorted_id_score_category = (sorted(id_score_category, key=itemgetter(1), reverse=True))
-    print("sorted_id_score_category", sorted_id_score_category)
-    return sorted_id_score_category
+    sorted_id_score_category = (sorted(
+        id_score_category, key=itemgetter(1), reverse=True))
+
+    print("sorted_id_score_category", sorted_id_score_category[:10])
+
+    return sorted_id_score_category[:10]
 
 sort_scores(id_score_category)
