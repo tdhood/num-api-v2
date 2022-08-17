@@ -30,6 +30,16 @@ trivia_fact = Trivia(
 db.session.add(trivia_fact)
 db.session.commit()
 
+trivia_fact = Trivia(
+    number=4,
+    fact_fragment='testing',
+    fact_statement='tesssst',
+    was_submitted=True
+)
+
+db.session.add(trivia_fact)
+db.session.commit()
+
 year_fact = Year(
     number=3,
     fact_fragment='new',
@@ -92,3 +102,13 @@ db.session.add(date_fact)
 db.session.commit()
 
 
+fact_A_1 = Trivia_Like(trivia_fact_id=2, timestamp=datetime(2001, 2, 2))
+
+fact_A_2 = Trivia_Like(trivia_fact_id=2, timestamp=datetime(2001, 5, 5))
+
+fact_B_1 = Trivia_Like(trivia_fact_id=1, timestamp=datetime(2012, 12, 12))
+
+fact_B_2 = Trivia_Like(trivia_fact_id=3, timestamp=datetime(2012, 1, 12))
+
+db.session.add_all([fact_A_1, fact_A_2, fact_B_1, fact_B_2])
+db.session.commit()
