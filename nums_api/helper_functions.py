@@ -167,24 +167,3 @@ def sort_scores(id_score_category):
     return sorted_id_score_category
 
 sort_scores(id_score_category)
-
-
-# function that queries db for top 10 facts
-# time stamp only grabing week at a time . order by grab the sum of the likes
-
-# TIME_WINDOW = CURRENT_TIME.replace(day=CURRENT_TIME.day-7)
-
-# like = Like (
-#         fact_id=fact_id,
-#         fact_category=category,
-#         uniqe_id=
-# )
-
-
-# likes = (Like
-#             .query
-#             .filter(Like.timestamp).in_([TIME_WINDOW,CURRENT_TIME])
-#             .group_by(Like.fact_id & Like.fact_category)
-#             .order_by(Like.timestamp.desc())
-#             .limit(10)
-#             .all())
