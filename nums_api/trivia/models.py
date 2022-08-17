@@ -1,4 +1,6 @@
 from nums_api.database import db
+from sqlalchemy import event
+from ..shared_utils.email_notification import send_emails_to_subscribers
 
 class Trivia(db.Model):
     """General trivia facts about numbers."""
@@ -32,3 +34,13 @@ class Trivia(db.Model):
         db.Boolean,
         nullable=False
         )
+
+# Event listener decorator
+# Calls function when there is an insertion to the the Trivia table
+@event.listens_for(Trivia, "after_insert")
+def listening_for_new_fact(mapper, connection, target):
+    """ Calls email sending function
+        - Takes:
+        mapper, connection and target as required parameters by the decorator
+    """
+    send_emails_to_subscribers()
