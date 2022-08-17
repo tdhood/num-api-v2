@@ -51,7 +51,7 @@ class Math_Like(db.Model):
         autoincrement=True
     )
 
-    year_fact_id = db.Column(
+    math_fact_id = db.Column(
         db.Integer,
         db.ForeignKey('math.id'),
         default=False,
