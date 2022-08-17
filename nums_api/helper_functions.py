@@ -1,37 +1,17 @@
 from datetime import datetime
 from sqlalchemy import func
 from nums_api.trivia.models import Trivia, Trivia_Like
-from nums_api import app
-from nums_api.database import db
+
 
 CURRENT_TIME = datetime.utcnow()
-
-# db.drop_all(app=app)
-# db.create_all(app=app)
-
-
-def test_function():
-
-    fact_A_1 = Trivia_Like(trivia_fact_id=2, timestamp=datetime(2001, 2, 2))
-
-    fact_A_2 = Trivia_Like(trivia_fact_id=2, timestamp=datetime(2001, 5, 5))
-
-    fact_B_1 = Trivia_Like(trivia_fact_id=1, timestamp=datetime(2012, 12, 12))
-
-    fact_B_2 = Trivia_Like(trivia_fact_id=3, timestamp=datetime(2012, 1, 12))
-
-    db.session.add_all([fact_A_1, fact_A_2, fact_B_1, fact_B_2])
-    db.session.commit()
-
-
-# test_function()
+G = 1.00002
 
 # Score = (P-1) / (T+2)^G
 
-    # where,
-    # P = points of an item (and -1 is to negate submitters vote)
-    # T = time since submission (in hours)
-    # G = Gravity, defaults to 1.8 in news.arc
+# where,
+# P = points of an item (and -1 is to negate submitters vote)
+# T = time since submission (in hours)
+# G = Gravity, defaults to 1.8 in news.arc
 
 
 def fetch_points():
@@ -44,7 +24,7 @@ def fetch_points():
         .group_by(Trivia_Like.trivia_fact_id)
         .all()
     )
-    print(trivia_points)
+    print("arry ids total likes ",trivia_points)
     return trivia_points
 
 
@@ -56,21 +36,70 @@ def fetch_time_of_submission(points):
 
     for items in points:
         trivia_fact_ids.append(items[0])
-    
+
     print('trivia fact ids', trivia_fact_ids)
 
-    trivia_ids_and_time = []
-    for items in trivia_fact_ids:
+    trivia_ids_and_points_and_times = []
+    for item in points:
         trivia_fact_submission_time = (
-            Trivia.query.with_entities(
-                Trivia.id, Trivia.timestamp
-            ).all()
+            Trivia.query.get(item[0])
         )
-        trivia_ids_and_time.append(trivia_fact_submission_time)
-    
-    print(trivia_ids_and_time)
+        trivia_ids_and_points_and_times.append(
+            [item[0],item[1],trivia_fact_submission_time.timestamp])
 
-fetch_time_of_submission(points)
+    return trivia_ids_and_points_and_times
+
+start_times = fetch_time_of_submission(points)
+
+def delta_time(start_times):
+
+
+    ids_and_points_delta_time =[]
+    for item in start_times:
+        delta = CURRENT_TIME - item[2]
+        ids_and_points_delta_time.append([item[0],item[1],delta.days])
+    print("delta times : ",ids_and_points_delta_time)
+    return(ids_and_points_delta_time)
+
+ids_and_points_delta_time = delta_time(start_times)
+
+
+def generate_score(ids_and_points_delta_time):
+
+    score_results_with_ids = []
+    for item in ids_and_points_delta_time:
+        # print(item[0])
+        # print(item[1])
+        # print(item[2])
+        score = int(item[1]) / (int(item[2]) ** G)
+        score_results_with_ids.append([item[0],score])
+
+    print("score with ids : ",score_results_with_ids)
+
+generate_score(ids_and_points_delta_time)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # function that queries db for top 10 facts
 # time stamp only grabing week at a time . order by grab the sum of the likes
