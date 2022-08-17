@@ -1,35 +1,32 @@
 from datetime import datetime
-from nums_api.trivia.models import  Trivia_Like
+from sqlalchemy import func
+from nums_api.trivia.models import Trivia, Trivia_Like
 from nums_api import app
 from nums_api.database import db
 
 CURRENT_TIME = datetime.utcnow()
 
+# db.drop_all(app=app)
+# db.create_all(app=app)
+
 
 def test_function():
 
-    fact_A_1 = Trivia_Like(
-        trivia_fact_id=2,
-        timestamp= datetime(2001,2,2)
-    )
+    fact_A_1 = Trivia_Like(trivia_fact_id=2, timestamp=datetime(2001, 2, 2))
 
-    fact_A_2 = Trivia_Like(
-        trivia_fact_id=2,
-        timestamp= datetime(2001,5,5)
-    )
+    fact_A_2 = Trivia_Like(trivia_fact_id=2, timestamp=datetime(2001, 5, 5))
 
-    fact_B_1 = Trivia_Like(
-        trivia_fact_id=1,
-        timestamp= datetime(2012,12,12)
-    )
+    fact_B_1 = Trivia_Like(trivia_fact_id=1, timestamp=datetime(2012, 12, 12))
 
-    db.session.add_all([fact_A_1,fact_A_2,fact_B_1])
+    fact_B_2 = Trivia_Like(trivia_fact_id=3, timestamp=datetime(2012, 1, 12))
+
+    db.session.add_all([fact_A_1, fact_A_2, fact_B_1, fact_B_2])
     db.session.commit()
 
 
-def popularity_algorithm():
+# test_function()
 
-    # Score = (P-1) / (T+2)^G
+# Score = (P-1) / (T+2)^G
 
     # where,
     # P = points of an item (and -1 is to negate submitters vote)
@@ -37,18 +34,43 @@ def popularity_algorithm():
     # G = Gravity, defaults to 1.8 in news.arc
 
 
-    trivia_likes = (Trivia_Like
-            .query
-            .group_by(Trivia_Like.trivia_fact_id, Trivia_Like.id)
-            .order_by(Trivia_Like.timestamp)
-            .all())
-
-    print(trivia_likes)
+def fetch_points():
 
 
+    # returns array of (trivia_fact_id, totals likes) // [(3,1)...]
+    trivia_points = (
+        Trivia_Like.query.with_entities(
+            Trivia_Like.trivia_fact_id, func.count(Trivia_Like.trivia_fact_id))
+        .group_by(Trivia_Like.trivia_fact_id)
+        .all()
+    )
+    print(trivia_points)
+    return trivia_points
 
 
+points = fetch_points()
 
+def fetch_time_of_submission(points):
+
+    trivia_fact_ids = []
+
+    for items in points:
+        trivia_fact_ids.append(items[0])
+    
+    print('trivia fact ids', trivia_fact_ids)
+
+    trivia_ids_and_time = []
+    for items in trivia_fact_ids:
+        trivia_fact_submission_time = (
+            Trivia.query.with_entities(
+                Trivia.id, Trivia.timestamp
+            ).all()
+        )
+        trivia_ids_and_time.append(trivia_fact_submission_time)
+    
+    print(trivia_ids_and_time)
+
+fetch_time_of_submission(points)
 
 # function that queries db for top 10 facts
 # time stamp only grabing week at a time . order by grab the sum of the likes
@@ -69,11 +91,3 @@ def popularity_algorithm():
 #             .order_by(Like.timestamp.desc())
 #             .limit(10)
 #             .all())
-
-
-
-
-
-test_function()
-
-popularity_algorithm()
