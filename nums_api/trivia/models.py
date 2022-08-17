@@ -1,4 +1,3 @@
-from email.policy import default
 from nums_api.database import db
 from datetime import datetime
 

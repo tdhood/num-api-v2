@@ -34,6 +34,12 @@ class Year(db.Model):
         nullable=False
     )
 
+    timestamp = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow,
+    )
+
 class Year_Like(db.Model):
 
     __tablename__='year_likes'
@@ -43,7 +49,7 @@ class Year_Like(db.Model):
         primary_key=True,
         autoincrement=True
     )
-    
+
     year_fact_id = db.Column(
         db.Integer,
         db.ForeignKey('years.id'),

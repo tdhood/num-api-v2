@@ -42,6 +42,15 @@ class Date (db.Model):
         nullable=False
     )
 
+    timestamp = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.datetime.utcnow,
+    )
+
+
+
+
 class Date_Like(db.Model):
 
     __tablename__='date_likes'

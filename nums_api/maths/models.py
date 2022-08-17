@@ -34,6 +34,13 @@ class Math(db.Model):
         nullable=False
     )
 
+    timestamp = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow,
+    )
+
+
 class Math_Like(db.Model):
 
     __tablename__='math_likes'
@@ -43,7 +50,7 @@ class Math_Like(db.Model):
         primary_key=True,
         autoincrement=True
     )
-    
+
     year_fact_id = db.Column(
         db.Integer,
         db.ForeignKey('math.id'),
