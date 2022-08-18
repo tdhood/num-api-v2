@@ -51,30 +51,6 @@ class Date (db.Model):
     )
 
 
-
-
-class Date_Like(db.Model):
-
-    __tablename__='date_likes'
-
-    id = db.Column(
-        db.Integer,
-        primary_key=True,
-        autoincrement=True
-    )
-
-    date_fact_id = db.Column(
-        db.Integer,
-        db.ForeignKey('dates.id'),
-        default=False,
-    )
-
-    timestamp = db.Column(
-        db.DateTime,
-        nullable=False,
-        default=datetime.datetime.utcnow,
-    )
-
     @classmethod
     def date_to_day_of_year(cls, month, day):
         """ A helper function to convert a month and day to the day of year.
@@ -161,6 +137,29 @@ class Date_Like(db.Model):
             date_string += "th"
 
         return date_string
+        
+
+class Date_Like(db.Model):
+
+    __tablename__='date_likes'
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True,
+        autoincrement=True
+    )
+
+    date_fact_id = db.Column(
+        db.Integer,
+        db.ForeignKey('dates.id'),
+        default=False,
+    )
+
+    timestamp = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.datetime.utcnow,
+    )
 
 # Event listener decorator
 # Calls function when there is an insertion to the the Date table
