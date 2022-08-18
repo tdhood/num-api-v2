@@ -8,12 +8,8 @@ import nums_api.popularity_algorithm as pa
 from nums_api.trivia.models import Trivia, Trivia_Like
 from nums_api.maths.models import Math, Math_Like
 
-# from nums_api.years.models import Year, Year_Like
-# from nums_api.dates.models import Date, Date_Like
 from datetime import datetime
 
-# import pdb
-# pdb.set_trace()
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL_TEST
 app.config["TESTING"] = True
 app.config["SQLALCHEMY_ECHO"] = False
@@ -35,13 +31,6 @@ class PopularityAlgorithmTestCase(TestCase):
             was_submitted=False,
             timestamp=datetime(2020, 1, 1),
         )
-        tf2 = Trivia(
-            number=2,
-            fact_fragment="the number for this test fact fragment",
-            fact_statement="2 is the number for this test fact statement.",
-            was_submitted=False,
-            timestamp=datetime(2020, 2, 2),
-        )
         mf1 = Math(
             number=1,
             fact_fragment="the number for this test fact fragment",
@@ -49,25 +38,27 @@ class PopularityAlgorithmTestCase(TestCase):
             was_submitted=False,
             timestamp=datetime(2020, 1, 1),
         )
-        mf2 = Math(
-            number=2,
-            fact_fragment="the number for this test fact fragment",
-            fact_statement="2 is the number for this test fact statement.",
-            was_submitted=False,
-            timestamp=datetime(2020, 2, 2),
-        )
         tl1 = Trivia_Like(trivia_fact_id=1, timestamp=datetime(2020, 2, 1))
         tl2 = Trivia_Like(trivia_fact_id=1, timestamp=datetime(2020, 2, 2))
         tl3 = Trivia_Like(trivia_fact_id=1, timestamp=datetime(2020, 2, 3))
-        tl4 = Trivia_Like(trivia_fact_id=2, timestamp=datetime(2020, 2, 4))
         ml1 = Math_Like(math_fact_id=1, timestamp=datetime(2020, 2, 1))
         ml2 = Math_Like(math_fact_id=1, timestamp=datetime(2020, 2, 2))
-        ml3 = Math_Like(math_fact_id=2, timestamp=datetime(2020, 2, 3))
 
-        db.session.add_all([tf1, tf2, mf1, mf2, tl1, tl2, tl3, tl4, ml1, ml2, ml3])
+        db.session.add_all([tf1, mf1])
+        db.session.commit() 
+        db.session.add_all([tl1, tl2, tl3, ml1, ml2])
         db.session.commit()
 
+        cls.tf1 = tf1
+        cls.mf1 = mf1
+        cls.tl1 = tl1
+        cls.tl2 = tl2
+        cls.tl3 = tl3
+        cls.ml1 = ml1
+        cls.ml2 = ml2
+
         cls.client = app.test_client()
+
 
     def tearDown(self):
         """Clean up any fouled transaction."""
@@ -81,16 +72,16 @@ class PopularityAlgorithmTestCase(TestCase):
     def test_fetch_points(self):
         """Test fetch_points, expected to return a list of lists representing
         fact's data"""
-        self.assertEquals(
+        self.assertEqual(
             pa.fetch_points(),
-            [[2, 1, "trivia"], [1, 3, "trivia"], [2, 1, "math"], [1, 2, "math"]],
+            [[self.tf1.id, 3, "trivia"], [self.mf1.id, 2, "math"]],
         )
 
     def test_fetch_time_of_submission(self):
         """tests fetch_time_of_submission, expected to add a time-submission
         signature to the fact's data in the list of lists """
-        self.assertEquals(
-            pa.fetch_time_of_submission([[1, 2, "trivia"]]),
+        self.assertEqual(
+            pa.fetch_time_of_submission([[self.tf1.id, 2, "trivia"]]),
             [
                 [
                     1,
@@ -104,22 +95,22 @@ class PopularityAlgorithmTestCase(TestCase):
     def test_delta_time(self):
         """test test_delta_time, expected to calculates the time deference and
         adds that to the fact's data in the list of lists  """
-        self.assertEquals(
-            pa.delta_time([[1, 2, datetime(2020, 1, 1, 0, 0), "trivia"]]),
+        self.assertEqual(
+            pa.delta_time([[self.tf1.id, 2, self.tf1.timestamp, "trivia"]]),
             [[1, 2, 960, "trivia"]],
         )
 
     def test_generate_score(self):
         """test generate_score, expected to add a score to the fact's data"""
-        self.assertEquals(
-            pa.generate_score([[1, 2, 960, "trivia"]]),
+        self.assertEqual(
+            pa.generate_score([[self.tf1.id, 2, 960, "trivia"]]),
             [[1, 0.0020797366042673926, "trivia"]],
         )
 
     def test_sort_scores(self):
         """returns a sorted list of lists based off of the score of each fact in
         the list of list"""
-        self.assertEquals(
+        self.assertEqual(
             pa.sort_scores([[1,1,'trivia'],[1,5,'trivia'], [1,3,'trivia']]),
             [[1,5,'trivia'], [1,3,'trivia'], [1,1,'trivia']]
         )
