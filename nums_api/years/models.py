@@ -1,10 +1,7 @@
 from nums_api.database import db
-<<<<<<< HEAD
 from datetime import datetime
-=======
 from sqlalchemy import event
 from ..shared_utils.email_notification import send_emails_to_subscribers
->>>>>>> main
 
 class Year(db.Model):
     """General facts about years."""
@@ -39,7 +36,6 @@ class Year(db.Model):
         nullable=False
     )
 
-<<<<<<< HEAD
     timestamp = db.Column(
         db.DateTime,
         nullable=False,
@@ -67,7 +63,6 @@ class Year_Like(db.Model):
         nullable=False,
         default=datetime.utcnow,
     )
-=======
 # Event listener decorator
 # Calls function when there is an insertion to the the Year table
 @event.listens_for(Year, "after_insert")
@@ -77,4 +72,3 @@ def listening_for_new_fact(mapper, connection, target):
         mapper, connection and target as required parameters by the decorator
     """
     send_emails_to_subscribers()
->>>>>>> main

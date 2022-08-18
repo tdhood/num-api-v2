@@ -79,12 +79,16 @@ class PopularityAlgorithmTestCase(TestCase):
         self.assertEqual(test_setup_correct, True)
 
     def test_fetch_points(self):
+        """Test fetch_points, expected to return a list of lists representing
+        fact's data"""
         self.assertEquals(
             pa.fetch_points(),
             [[2, 1, "trivia"], [1, 3, "trivia"], [2, 1, "math"], [1, 2, "math"]],
         )
 
     def test_fetch_time_of_submission(self):
+        """tests fetch_time_of_submission, expected to add a time-submission
+        signature to the fact's data in the list of lists """
         self.assertEquals(
             pa.fetch_time_of_submission([[1, 2, "trivia"]]),
             [
@@ -98,18 +102,23 @@ class PopularityAlgorithmTestCase(TestCase):
         )
 
     def test_delta_time(self):
+        """test test_delta_time, expected to calculates the time deference and
+        adds that to the fact's data in the list of lists  """
         self.assertEquals(
             pa.delta_time([[1, 2, datetime(2020, 1, 1, 0, 0), "trivia"]]),
             [[1, 2, 960, "trivia"]],
         )
 
     def test_generate_score(self):
+        """test generate_score, expected to add a score to the fact's data"""
         self.assertEquals(
             pa.generate_score([[1, 2, 960, "trivia"]]),
             [[1, 0.0020797366042673926, "trivia"]],
         )
-    
+
     def test_sort_scores(self):
+        """returns a sorted list of lists based off of the score of each fact in
+        the list of list"""
         self.assertEquals(
             pa.sort_scores([[1,1,'trivia'],[1,5,'trivia'], [1,3,'trivia']]),
             [[1,5,'trivia'], [1,3,'trivia'], [1,1,'trivia']]
