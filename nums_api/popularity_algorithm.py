@@ -8,7 +8,7 @@ from nums_api.dates.models import Date, Date_Like
 
 
 CURRENT_TIME = datetime.utcnow()
-# G = Gravity.(adjustable based on total likes and date of fact submission) 
+# G = Gravity.(adjustable based on total likes and date of fact submission)
 # If adjusted, update doctest!
 G = 1.0001
 
@@ -16,7 +16,7 @@ G = 1.0001
 # Popularity algorithm:
 # https://medium.com/hacking-and-gonzo/how-hacker-news-ranking-algorithm-works-1d9b0cf2c08d
 # Effects of gravity (G) and time (T)
-# Gravity and time have a significant impact on the score of an item. 
+# Gravity and time have a significant impact on the score of an item.
 #   Generally these things hold true:
 #       the score decreases as T increases, meaning that older items will get lower and lower scores
 #       the score decreases much faster for older items if gravity is increased
@@ -155,7 +155,7 @@ def get_score(points: int, deltatime: int):
     # assuming G=1.0001
     >>> round(get_score(1,2), 3)
     0.333
-    
+
     """
     score = points / ((deltatime + 1) ** G)
 
@@ -163,9 +163,9 @@ def get_score(points: int, deltatime: int):
 
 
 def generate_score(ids_points_deltatime_category):
-    """Takes an array like [[fact_id, points, delta_time, category], ...] 
+    """Takes an array like [[fact_id, points, delta_time, category], ...]
         Calculates the Score using Popularity algorithm
-    
+
         Returns array like [[fact_id, score, category], ...]
     """
 
@@ -181,7 +181,7 @@ def sort_scores(id_score_category):
     """Takes an array like [[fact_id, score, category], ...]
 
         Sorts array based on score
-    
+
     """
     sorted_id_score_category = (sorted(id_score_category, key=itemgetter(1), reverse=True))
     # print("sorted_id_score_category", sorted_id_score_category)
@@ -189,6 +189,8 @@ def sort_scores(id_score_category):
 
 
 def get_trending_facts():
+    """a conductor function: returns array of top ten trending facts"""
+
     id_points_category = fetch_points()
     ids_points_starttimes_category = fetch_time_of_submission(id_points_category)
     ids_points_deltatime_category = delta_time(ids_points_starttimes_category)
