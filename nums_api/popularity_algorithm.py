@@ -8,7 +8,8 @@ from nums_api.dates.models import Date, Date_Like
 
 
 CURRENT_TIME = datetime.utcnow()
-# G = Gravity.(adjustable)
+# G = Gravity.(adjustable based on total likes and date of fact submission) 
+# If adjusted, update doctest!
 G = 1.0001
 
 
@@ -79,11 +80,8 @@ def fetch_points():
         print(tuple)
         id_points_category.append([*tuple, "date"])
 
-    print("id_points_category ", id_points_category)
+    # print("id_points_category ", id_points_category)
     return id_points_category
-
-
-id_points_category = fetch_points()
 
 
 def fetch_time_of_submission(id_points_category):
@@ -121,11 +119,8 @@ def fetch_time_of_submission(id_points_category):
                 [item[0], item[1], fact_submission_time.timestamp, item[2]]
             )
 
-    print("ids_points_starttimes_category", ids_points_starttimes_category)
+    # print("ids_points_starttimes_category", ids_points_starttimes_category)
     return ids_points_starttimes_category
-
-
-ids_points_starttimes_category = fetch_time_of_submission(id_points_category)
 
 
 def delta_time(ids_points_starttimes_category):
@@ -140,11 +135,9 @@ def delta_time(ids_points_starttimes_category):
     for item in ids_points_starttimes_category:
         delta = CURRENT_TIME - item[2]
         ids_points_deltatime_category.append([item[0], item[1], delta.days, item[3]])
-    print("delta times : ", ids_points_deltatime_category)
+    # print("delta times : ", ids_points_deltatime_category)
     return ids_points_deltatime_category
 
-
-ids_points_deltatime_category = delta_time(ids_points_starttimes_category)
 
 def get_score(points: int, deltatime: int):
     """Takes total likes as points and a delta time as the change in time
@@ -181,10 +174,8 @@ def generate_score(ids_points_deltatime_category):
         score = get_score(item[1], item[2])
         id_score_category.append([item[0],score, item[3]])
 
-    print("score with ids : ",id_score_category)
+    # print("score with ids : ",id_score_category)
     return id_score_category
-
-id_score_category = generate_score(ids_points_deltatime_category)
 
 def sort_scores(id_score_category):
     """Takes an array like [[fact_id, score, category], ...]
@@ -193,7 +184,16 @@ def sort_scores(id_score_category):
     
     """
     sorted_id_score_category = (sorted(id_score_category, key=itemgetter(1), reverse=True))
-    print("sorted_id_score_category", sorted_id_score_category)
-    return sorted_id_score_category
+    # print("sorted_id_score_category", sorted_id_score_category)
+    return sorted_id_score_category[:10]
 
-sort_scores(id_score_category)
+
+def get_trending_facts():
+    id_points_category = fetch_points()
+    ids_points_starttimes_category = fetch_time_of_submission(id_points_category)
+    ids_points_deltatime_category = delta_time(ids_points_starttimes_category)
+    id_score_category = generate_score(ids_points_deltatime_category)
+    trending_facts = sort_scores(id_score_category)
+    return trending_facts
+
+# get_trending_facts()
