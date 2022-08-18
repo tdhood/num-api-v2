@@ -1,6 +1,11 @@
 from nums_api.database import db
+<<<<<<< HEAD
 from datetime import datetime
 
+=======
+from sqlalchemy import event
+from ..shared_utils.email_notification import send_emails_to_subscribers
+>>>>>>> main
 
 class Trivia(db.Model):
     """General trivia facts about numbers."""
@@ -33,6 +38,7 @@ class Trivia(db.Model):
     was_submitted = db.Column(
         db.Boolean,
         nullable=False
+<<<<<<< HEAD
     )
 
     timestamp = db.Column(
@@ -62,3 +68,16 @@ class Trivia_Like(db.Model):
         nullable=False,
         default=datetime.utcnow,
     )
+=======
+        )
+
+# Event listener decorator
+# Calls function when there is an insertion to the the Trivia table
+@event.listens_for(Trivia, "after_insert")
+def listening_for_new_fact(mapper, connection, target):
+    """ Calls email sending function
+        - Takes:
+        mapper, connection and target as required parameters by the decorator
+    """
+    send_emails_to_subscribers()
+>>>>>>> main

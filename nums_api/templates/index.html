@@ -15,11 +15,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap@5/dist/css/bootstrap.css">
   <title>Numbers API v2</title>
 </head>
 
 <body>
   {{ docs|safe }}
+  {% include "subscription_form.html" %}
 </body>
 
 </html>

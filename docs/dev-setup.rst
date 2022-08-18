@@ -7,6 +7,16 @@ Add a `.env` file in the top level directory and include the following ::
   DATABASE_URL_TEST=postgresql:///numbers_api_test
   FLASK_APP=nums_api
 
+  Please add a SECRET_KEY environmental variable for signing session cookie:
+
+  SECRET_KEY=abc123
+
+  Please set up a google account application password and
+  include the following environmental variables:
+
+  MAIL_USERNAME="your_email@email.com"
+  MAIL_PASSWORD="your_account_app_password"
+
 You'll need Python3 and PostgreSQL ::
 
   python3 -m venv venv
