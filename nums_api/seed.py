@@ -4,6 +4,7 @@ from nums_api.trivia.models import Trivia
 from nums_api.maths.models import Math
 from nums_api.years.models import Year
 from nums_api.dates.models import Date
+from nums_api.subscribers.models import Subscriber
 from random import randint, choice
 
 # Quantity of dummy data to generate in each table.
